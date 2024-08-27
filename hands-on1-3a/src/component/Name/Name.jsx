@@ -1,4 +1,4 @@
-import './Name.css';
+import './Name.css'
 
 function Name({firstName,lastName}) {
     return (

@@ -1,9 +1,9 @@
-import './Section.css';
+import './Section.css'
 
-function Section() {
+function Section ({section}) {
     return (
         <div>
-            <h2 className='section'>Section</h2>
+            <h2 className='section'>{section}</h2>
         </div>
     )
 }

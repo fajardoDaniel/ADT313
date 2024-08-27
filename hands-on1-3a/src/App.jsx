@@ -1,22 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
-import Name from './component/Name/Name';
-import Section from './component/Section/Section';
-import Description from './component/Description/Description';
 
+import  Name from './Component/Name/Name'
+import Section  from './Component/Section/Section';
+import Description from './Component/Description/Description';
 
 function App() {
   const userInformation = {
-    firstName: 'Lem',
-    lastName: 'Francisco',
+    firstName: 'Daniel',
+    lastName: 'Fajardo',
     section: 'IT-3A',
-    description: 'Short description'
+    description: 'CODM Player and Coffee Addict'
   }
   return (
     <div className='App'>
       <Name firstName={userInformation.firstName} lastName={userInformation.lastName} />
-      <Section />
-      <Description />
+      <Section  section={userInformation.section} />
+      <Description description={userInformation.description} />
     </div>
   );
 }

@@ -1,9 +1,9 @@
-import './Description.css';
+import './Description.css'
 
-function Description() {
+function Description ({description}) {
     return (
         <div>
-            <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi at labore eligendi iure suscipit ullam libero harum facilis aut molestiae quisquam a exercitationem sint quos nostrum magni, esse, earum fugit.</p>
+            <h2 className='description'>{description}</h2>
         </div>
     )
 }
