@@ -1,82 +1,78 @@
-import React, { useState, useEffect } from 'react';
-import './Cast.css';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const CastsAndCrew = ({ members }) => {
-    return (
-    <div className="members-container">
-            {members.map((member, index) => (
-                <div key={index} className="member-card">
-                    <h3 className="member-name">{member.name}</h3>
-                    <p className="member-role">{member.role}</p>
-                    {member.imageUrl && <img src={member.imageUrl} alt={`${member.name}`} className="member-image" />}
-                    {member.description && <p className="member-description">{member.description}</p>} 
-                </div>
-            ))}
-        </div>
-    );
+const App = () => {
+  const [movieId, setMovieId] = useState('');
+  const [credits, setCredits] = useState([]);
+  const [castAndCrew, setCastAndCrew] = useState([]);
+
+  const fetchCredits = async () => {
+    axios({
+      method: 'get',
+      url: `https://api.themoviedb.org/3/movie/${movieId}/credits`,
+      headers: {
+        Accept: 'application/json',
+        Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OGNiZTJmYWIzZjQ4ZDEzMzEzNDRlM2QwMTNhNjhkNCIsIm5iZiI6MTczMzM4MTE1Ny45LCJzdWIiOiI2NzUxNGMyNTUxNmVkZWFiMjk5OTI0YjIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.uA1i_MVjKY65bwsonISpiGFT2CW_mhZCSUrWWw2JhEc',
+      },
+    }).then((response) => {
+      setCastAndCrew(response.data.cast);
+      console.log(response.data.results);
+    });
+    }
+
+  const addMemberToDatabase = async (member) => {
+    try {
+      await axios.post('http://localhost:3001/api/cast_and_crew', {
+        name: member.name,
+        role: member.known_for_department,
+        role_description: 'Unknown', 
+        email: '',
+        phone: '',
+        experience: 'Unknown',
+        salary: 0,
+      });
+      setCastAndCrew((prev) => [...prev, member]); 
+    } catch (error) {
+      console.error('Error adding member to database', error);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Movie Cast and Crew</h1>
+      <input
+        type="text"
+        placeholder="Enter Movie ID"
+        value={movieId}
+        onChange={(e) => setMovieId(e.target.value)}
+      />
+      <button onClick={fetchCredits}>Search Credits</button>
+
+      <div>
+        <h2>Cast and Crew</h2>
+        <ul>
+          {credits.map((member) => (
+            <li key={member.id}>
+              {member.name} ({member.known_for_department})
+              <button onClick={() => addMemberToDatabase(member)}>Add</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2>Added Cast and Crew Members</h2>
+        <ul>
+          {castAndCrew.map((member) => (
+            <li key={member.id}>
+              {member.name} ({member.role})
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
 };
 
-export default function App() {
-    const [membersData, setMembersData] = useState([ ]); 
-    const [newMember, setNewMember] = useState({ name: ' ', role: ' ', imageUrl: ' ', description: ' ' }); 
- 
-    useEffect(() => {
-        const savedMembers = localStorage.getItem('membersData');
-        if (savedMembers) {
-            setMembersData(JSON.parse(savedMembers));
-        }
-    }, [ ]); 
-
-    useEffect(() => {
-        localStorage.setItem('membersData', JSON.stringify(membersData));
-    }, [membersData]);
-  
-    const addMember = ( ) => { 
-    if (newMember.name.trim( ) !== ' ' && newMember.role.trim( ) !== ' ' ) { 
-            setMembersData([...membersData, newMember]);
-            setNewMember({ name: ' ', role: ' ', imageUrl: ' ', description: ' ' }); 
-        }
-    };
-   
-    useEffect(( ) => { 
-        const interval = setInterval(( ) => { 
-            console.log('Auto-saving cast and crew data:', membersData);
-        }, 5000);
-  
-        return ( ) => clearInterval(interval); 
-    }, [membersData]);
-  
-    return (
-        <div>
-            <h1>Cast and Crew</h1>
-            <div className="input-container">
-                <input
-                    type="text"
-                    value={newMember.name}
-                    onChange={(e) => setNewMember({ ...newMember, name: e.target.value })} 
-                    placeholder="Enter name"
-                />
-                <input
-                    type="text"
-                    value={newMember.role}
-                    onChange={(e) => setNewMember({ ...newMember, role: e.target.value })}
-                    placeholder="Enter role"
-                />
-                <input
-                    type="text"
-                    value={newMember.imageUrl}
-                    onChange={(e) =>  setNewMember({ ...newMember, imageUrl: e.target.value })} 
-                    placeholder="Enter image URL"
-                />
-                <input
-                    type="text"
-                    value={newMember.description}
-                    onChange={(e) => setNewMember({ ...newMember, description: e.target.value })}
-                    placeholder="Enter description"
-                />
-                <button onClick={addMember}>Add Member</button>
-            </div>   
-            <CastsAndCrew members={membersData} />
-        </div>
-    );          
-}
+export default App;

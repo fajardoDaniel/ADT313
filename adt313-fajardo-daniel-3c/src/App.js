@@ -10,8 +10,7 @@ import Form from './pages/Main/Movie/Form/Form';
 import Login from './pages/Public/Login/Login/Login';
 import { Route, Routes } from 'react-router-dom';
 import Register2 from './pages/Public/Login/Register/Register2';
-// import Cast from './pages/Main/Movie/Cast/Cast':
-
+import Cast from './pages/Main/Movie/Cast/Cast';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -43,18 +42,8 @@ const router = createBrowserRouter([
             element: <Form />,
             children: [
               {
-                path: '/main/movies/form/:movieId',
-                element: (
-                  <h1>Change this for cast & crew CRUD functionality.</h1>
-                ),
-              },
-              {
                 path: '/main/movies/form/:movieId/cast-and-crews',
-                element: (
-                  <h1>
-                    Change this for cast & crew CRUD functionality component.
-                  </h1>
-                ),
+                element: <Cast />,
               },
               {
                 path: '/main/movies/form/:movieId/photos',

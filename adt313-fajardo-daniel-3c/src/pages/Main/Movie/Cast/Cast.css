@@ -1,4 +1,4 @@
-.cast-container {
+/* .cast-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -105,4 +105,107 @@
     .cast-info {
       padding: 10px;
     }
-  }
+  } */
+
+
+  /* Coffee-themed Cast and Crew Stylesheet */
+body {
+  background-color: #f4e6d0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #3e2723;
+  line-height: 1.6;
+}
+
+.movie-cast-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(210, 180, 140, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #6f4e37;
+  font-weight: bold;
+  padding: 15px;
+  background-color: rgba(210, 180, 140, 0.5);
+  border-radius: 8px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #8b4513;
+  border-radius: 6px;
+  background-color: #f5deb3;
+  color: #3e2723;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #a0522d;
+  box-shadow: 0 0 5px rgba(160, 82, 45, 0.5);
+}
+
+button {
+  background-color: #6f4e37;
+  color: #fff5e6;
+  border: none;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #8b4513;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: rgba(210, 180, 140, 0.5);
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+li button {
+  margin-left: 10px;
+  background-color: #a0522d;
+  font-size: 0.9em;
+}
+
+li button:hover {
+  background-color: #6f4e37;
+}
+
+/* Scrollbar styling to match coffee theme */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4e6d0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #8b4513;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #6f4e37;
+}
