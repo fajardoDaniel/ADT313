@@ -40,7 +40,7 @@ function Register() {
       });
       console.log(response.data);
       alert('Registration successful! Please login.');
-      navigate('/Login');
+      navigate('/');
     } catch (error) {
       console.error('Registration error:', error.response?.data);
       alert(error.response?.data?.message || 'Registration failed. Please try again.');

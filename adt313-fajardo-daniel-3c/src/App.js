@@ -13,7 +13,7 @@ import Register2 from './pages/Public/Login/Register/Register2';
 
 const router = createBrowserRouter([
   {
-    path: '/Login',
+    path: '/',
     element : <Login/>, 
   },
   {
