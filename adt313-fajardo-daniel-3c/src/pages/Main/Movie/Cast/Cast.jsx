@@ -1,78 +1,82 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './Cast.css';
 
-function Cast({ movieId }) {
-  const [cast, setCast] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const CastsAndCrew = ({ members }) => {
+    return (
+    <div className="members-container">
+            {members.map((member, index) => (
+                <div key={index} className="member-card">
+                    <h3 className="member-name">{member.name}</h3>
+                    <p className="member-role">{member.role}</p>
+                    {member.imageUrl && <img src={member.imageUrl} alt={`${member.name}`} className="member-image" />}
+                    {member.description && <p className="member-description">{member.description}</p>} 
+                </div>
+            ))}
+        </div>
+    );
+};
 
-  const TMDB_ACCESS_TOKEN = process.env.REACT_APP_TMDB_ACCESS_TOKEN;
-  const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+export default function App() {
+    const [membersData, setMembersData] = useState([ ]); 
+    const [newMember, setNewMember] = useState({ name: ' ', role: ' ', imageUrl: ' ', description: ' ' }); 
+ 
+    useEffect(() => {
+        const savedMembers = localStorage.getItem('membersData');
+        if (savedMembers) {
+            setMembersData(JSON.parse(savedMembers));
+        }
+    }, [ ]); 
 
-  useEffect(() => {
-    const fetchCast = async () => {
-      if (!movieId) return;
-
-      try {
-        setLoading(true);
-        const response = await axios.get(
-          `${TMDB_BASE_URL}/movie/${movieId}/credits`, 
-          {
-            headers: {
-              'Authorization': `Bearer ${TMDB_ACCESS_TOKEN}`,
-              'Content-Type': 'application/json'
-            }
-          }
-        );
-
-        // Process and limit cast to top 10 actors
-        const processedCast = response.data.cast
-          .slice(0, 10)
-          .map(actor => ({
-            id: actor.id,
-            name: actor.name,
-            character: actor.character,
-            profilePath: actor.profile_path 
-              ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
-              : 'https://via.placeholder.com/200x300.png?text=No+Image'
-          }));
-
-        setCast(processedCast);
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to fetch cast information');
-        setLoading(false);
-        console.error('Cast fetch error:', err);
-      }
+    useEffect(() => {
+        localStorage.setItem('membersData', JSON.stringify(membersData));
+    }, [membersData]);
+  
+    const addMember = ( ) => { 
+    if (newMember.name.trim( ) !== ' ' && newMember.role.trim( ) !== ' ' ) { 
+            setMembersData([...membersData, newMember]);
+            setNewMember({ name: ' ', role: ' ', imageUrl: ' ', description: ' ' }); 
+        }
     };
-
-    fetchCast();
-  }, [movieId]);
-
-  if (loading) return <div>Loading cast...</div>;
-  if (error) return <div>{error}</div>;
-
-  return (
-    <div className="cast-container">
-      <h2>Cast</h2>
-      <div className="cast-grid">
-        {cast.map(actor => (
-          <div key={actor.id} className="cast-member">
-            <img 
-              src={actor.profilePath} 
-              alt={actor.name} 
-              className="cast-image"
-            />
-            <div className="cast-info">
-              <p className="actor-name">{actor.name}</p>
-              <p className="character-name">{actor.character}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+   
+    useEffect(( ) => { 
+        const interval = setInterval(( ) => { 
+            console.log('Auto-saving cast and crew data:', membersData);
+        }, 5000);
+  
+        return ( ) => clearInterval(interval); 
+    }, [membersData]);
+  
+    return (
+        <div>
+            <h1>Cast and Crew</h1>
+            <div className="input-container">
+                <input
+                    type="text"
+                    value={newMember.name}
+                    onChange={(e) => setNewMember({ ...newMember, name: e.target.value })} 
+                    placeholder="Enter name"
+                />
+                <input
+                    type="text"
+                    value={newMember.role}
+                    onChange={(e) => setNewMember({ ...newMember, role: e.target.value })}
+                    placeholder="Enter role"
+                />
+                <input
+                    type="text"
+                    value={newMember.imageUrl}
+                    onChange={(e) =>  setNewMember({ ...newMember, imageUrl: e.target.value })} 
+                    placeholder="Enter image URL"
+                />
+                <input
+                    type="text"
+                    value={newMember.description}
+                    onChange={(e) => setNewMember({ ...newMember, description: e.target.value })}
+                    placeholder="Enter description"
+                />
+                <button onClick={addMember}>Add Member</button>
+            </div>   
+            <CastsAndCrew members={membersData} />
+        </div>
+    );          
 }
-
-export default Cast;

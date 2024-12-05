@@ -68,7 +68,7 @@
     font-size: 0.9rem;
   }
   
-  /* Loading and Error States */
+  
   .cast-container > div:first-child {
     display: flex;
     justify-content: center;
@@ -80,7 +80,7 @@
     border-radius: 10px;
   }
   
-  /* Responsive Adjustments */
+ 
   @media (max-width: 768px) {
     .cast-grid {
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
