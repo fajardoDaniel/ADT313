@@ -31,3 +31,30 @@
 .searched-movie-list p:hover {
   background-color: #f0f0f0;
 }
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 4px;
+  display: block;
+}
+
+.error {
+  color: red;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border: 1px solid red;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+.form{   
+  height: 100vh; 
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),url(movie\ bg.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}

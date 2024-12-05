@@ -1,161 +1,4 @@
-
-  /* 2nd update of design with coffee-themed */
-/* 
-  .Register {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #966949, #7b3819);
-    font-family: 'Arial', sans-serif;
-    padding: 20px;
-  }
-  
-  .main-container {
-    background-color: #FFF5E6;
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: 500px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .main-container::before {
-    content: '☕';
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    font-size: 100px;
-    opacity: 0.1;
-    transform: rotate(15deg);
-  }
-  
-  .main-container h3 {
-    color: #4A2C2A;
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .form-group {
-    position: relative;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #6F4E37;
-    font-weight: 600;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #572908;
-    border-radius: 8px;
-    background-color: #c69674;
-    transition: all 0.3s ease;
-    font-size: 16px;
-  }
-  
-  .form-group input:focus {
-    outline: none;
-    border-color: #572908;
-    box-shadow: 0 0 10px rgba(139, 69, 19, 0.2);
-  }
-  
-  .show-password {
-    color: #6F4E37;
-    cursor: pointer;
-    font-size: 0.9em;
-    text-align: right;
-    margin-top: -10px;
-    text-decoration: underline;
-  }
-  
-  .submit-container {
-    margin-top: 20px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 15px;
-    background-color: #6F4E37;
-    color: #572908;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  button:hover:not(:disabled) {
-    background-color: #6F4E37;
-  }
-  
-  button:disabled {
-    background-color: #c69674;
-    cursor: not-allowed;
-  }
-  
-  .login-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .login-container a {
-    color: #6F4E37;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  
-  .login-container a:hover {
-    color: #c69674;
-  }
-  
-  .errors {
-    color: #FF4500;
-    font-size: 0.9em;
-    margin-top: 5px;
-  }
-  
-  @media (max-width: 480px) {
-    .main-container {
-      padding: 20px;
-    }
-    
-    .main-container h3 {
-      font-size: 2em;
-    }
-    
-    .form-group input {
-      padding: 10px;
-    }
-  } */
-
-
-
-
-
-
-
-
-
-  .Register {
+.Register {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -281,3 +124,15 @@
       padding: 0.5rem;
     }
   }
+  .Register{   
+    height: 100vh; 
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),url(bg\ for\ regis.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
