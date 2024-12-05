@@ -1,0 +1,108 @@
+.cast-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4e6d3;
+  }
+  
+  .cast-container h2 {
+    text-align: center;
+    color: #5d3a1a;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #8b4513;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .cast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .cast-member {
+    background-color: #f0d2a5;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(90, 60, 30, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #a0522d;
+  }
+  
+  .cast-member:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(90, 60, 30, 0.2);
+  }
+  
+  .cast-image {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    object-position: center;
+    filter: sepia(20%);
+    transition: filter 0.3s ease;
+  }
+  
+  .cast-member:hover .cast-image {
+    filter: sepia(0%);
+  }
+  
+  .cast-info {
+    padding: 15px;
+    background-color: #e7c393;
+    text-align: center;
+  }
+  
+  .actor-name {
+    color: #5d3a1a;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1rem;
+  }
+  
+  .character-name {
+    color: #8b4513;
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+  
+  /* Loading and Error States */
+  .cast-container > div:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: #5d3a1a;
+    font-size: 1.2rem;
+    background-color: #f0d2a5;
+    border-radius: 10px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .cast-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+    }
+  
+    .cast-image {
+      height: 230px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .cast-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+  
+    .cast-image {
+      height: 200px;
+    }
+  
+    .cast-info {
+      padding: 10px;
+    }
+  }
