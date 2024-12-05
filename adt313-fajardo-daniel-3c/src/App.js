@@ -9,7 +9,7 @@ import Lists from './pages/Main/Movie/Lists/Lists';
 import Form from './pages/Main/Movie/Form/Form';
 import Login from './pages/Public/Login/Login/Login';
 import { Route, Routes } from 'react-router-dom';
-import Register2 from './pages/Public/Login/Register2';
+import Register2 from './pages/Public/Login/Register/Register2';
 
 const router = createBrowserRouter([
   {
