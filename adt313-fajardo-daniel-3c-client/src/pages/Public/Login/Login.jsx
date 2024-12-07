@@ -117,19 +117,19 @@ function Login() {
       }
 
       if (email && password) {
-        // Set loading status
+         
         setStatus('loading');
 
-        // Add a delay before proceeding
+         
         setTimeout(() => {
           handleLogin({
             type: 'login',
             user: { email, password },
           });
 
-          // Reset status after the delay
+           
           setStatus('idle');
-        }, 2000); // 2 seconds delay
+        }, 2000);  
       } else {
         setIsFieldsDirty(true);
         if (email === '') {
