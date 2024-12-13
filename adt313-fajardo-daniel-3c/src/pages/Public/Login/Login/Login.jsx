@@ -60,7 +60,9 @@ function Login() {
       .catch((e) => {
         console.log(e);
         setStatus('idle');
+        console.log(e.reponse.data.message)
         // alert(e.response.data.message);
+        ////
       });
   };
 
